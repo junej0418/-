@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>학급 선거 용지 제작기</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <section class="panel editor">
+        <h1>학급 선거 용지 제작기</h1>
+        <p class="guide">
+          대한민국 공직선거 투표용지의 시각 구성을 참고한 학급용 템플릿입니다. 모든 항목을 자유롭게 수정하고
+          바로 인쇄할 수 있습니다.
+        </p>
+
+        <h2>기본 정보</h2>
+        <div class="grid two-col">
+          <label>선거명 <input id="electionTitle" value="제5학년 3반 반장선거" /></label>
+          <label>투표구명 <input id="district" value="5학년 3반 교실투표구" /></label>
+          <label>선거일 <input id="electionDate" value="2026년 3월 15일" /></label>
+          <label>투표시간 <input id="electionTime" value="09:00 ~ 12:00" /></label>
+          <label>선거관리기관 <input id="commission" value="5학년 3반 선거관리위원회" /></label>
+          <label>선출 직책 <input id="position" value="반장" /></label>
+          <label>비고 문구
+            <input id="note" value="기표란에는 한 명에게만 표시하세요." />
+          </label>
+          <label>하단 안내 문구
+            <input id="footerNote" value="※ 본 투표용지는 학급 교육활동용입니다." />
+          </label>
+        </div>
+
+        <h2>후보자</h2>
+        <div id="candidateEditor" class="candidate-editor"></div>
+        <div class="row gap">
+          <button id="addCandidate" type="button">후보 추가</button>
+          <button id="removeCandidate" type="button">마지막 후보 삭제</button>
+        </div>
+
+        <h2>용지 설정</h2>
+        <div class="grid two-col">
+          <label>용지 너비(mm) <input id="paperWidth" type="number" value="148" min="100" /></label>
+          <label>용지 높이(mm) <input id="paperHeight" type="number" value="210" min="120" /></label>
+          <label>글자 크기(기본, px) <input id="baseFontSize" type="number" value="14" min="10" /></label>
+          <label>행 높이(px) <input id="rowHeight" type="number" value="54" min="40" /></label>
+        </div>
+      </section>
+
+      <section class="panel preview-wrap">
+        <div class="preview-header">
+          <h2>미리보기</h2>
+          <button id="printBtn" type="button">인쇄 / PDF 저장</button>
+        </div>
+
+        <article id="ballot" class="ballot" aria-label="투표용지 미리보기">
+          <header class="ballot-header">
+            <p id="pDistrict" class="district"></p>
+            <h3 id="pTitle" class="title"></h3>
+            <p class="meta"><span id="pDate"></span> · <span id="pTime"></span></p>
+            <p id="pCommission" class="commission"></p>
+          </header>
+
+          <section class="ballot-body">
+            <div class="table-head">
+              <span>기호</span>
+              <span>후보자 성명</span>
+              <span>학번/정보</span>
+              <span>기표란</span>
+            </div>
+            <div id="rows" class="rows"></div>
+          </section>
+
+          <footer class="ballot-footer">
+            <p id="pNote"></p>
+            <p id="pFooterNote"></p>
+          </footer>
+        </article>
+      </section>
+    </main>
+
+    <template id="candidateTemplate">
+      <div class="candidate-card">
+        <label>기호 <input class="cand-number" type="number" min="1" value="1" /></label>
+        <label>이름 <input class="cand-name" value="홍길동" /></label>
+        <label>학번/정보 <input class="cand-info" value="5-3-12" /></label>
+      </div>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
